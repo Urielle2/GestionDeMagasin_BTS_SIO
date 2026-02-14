@@ -15,13 +15,9 @@ public class OutInPut {
      * Gère l'erreur si l'utilisateur saisit autre chose qu'un chiffre
      */
     public static int saisirEntier(String message) {
-        try {
             String s = JOptionPane.showInputDialog(null, message);
             return Integer.parseInt(s);
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Erreur : Vous devez saisir un nombre entier.");
-            return 0; // Valeur par défaut en cas d'erreur
-        }
+  
     }
 
     /**

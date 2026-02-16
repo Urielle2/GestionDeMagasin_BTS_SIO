@@ -137,7 +137,7 @@ public class Menu {
         switch (choix) {
             case 1:
 
-                menuResponsable();
+            	menuGestionEmployes();
                 break;
             case 2:
 

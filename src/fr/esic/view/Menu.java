@@ -1,5 +1,7 @@
 package fr.esic.view;
 
+import fr.esic.controller.*;
+
 public class Menu {
 
     public static void main(String[] args) {
@@ -7,154 +9,141 @@ public class Menu {
     }
 
     public static void menuEmploye() {
-        String menu = "1. Caissière\n2. Magasinier\n3. Responsable \n\n0. Quitter";
-        int choix = fr.esic.library.OutInPut.saisirEntier(menu);
-        switch (choix) {
-            case 1:
-                // if (){
-                // menuCaissiere()
-                // }
-                menuCaissiere();
-                // LOGIQUE DU CODE POUR VERIFIER SI L'EMPLOYE EST CAISSIERE A AJOUTER
-                break;
-            case 2:
-                // if (){
-                // menuMagasinier()
-                // }
-                menuMagasinier();
-                // LOGIQUE DU CODE POUR VERIFIER SI L'EMPLOYE EST MAGASINIER A AJOUTER
-                break;
-            case 3:
-                // if (){
-                // menuResponsable()
-                // }
-                menuResponsable();
-                // LOGIQUE DU CODE POUR VERIFIER SI L'EMPLOYE EST RESPONSABLE A AJOUTER
-                break;
-            case 0:
-                fr.esic.library.OutInPut.afficher("Au revoir !");
-                System.exit(0);
-                break;
-            default:
-                fr.esic.library.OutInPut.afficher("Choix invalide. Veuillez réessayer.");
-                menuEmploye(); // Affiche à nouveau le menu
+        while (true) {
+            String menu = "1. Caissière\n2. Magasinier\n3. Responsable \n\n0. Quitter";
+            int choix = fr.esic.library.OutInPut.saisirEntier(menu);
+            switch (choix) {
+                case 1:
+                    int codeEmploye = fr.esic.library.OutInPut.saisirEntier("Entrez votre code employé : ");
+                    if (codeEmploye == 1) {
+                        menuCaissiere();
+                    } else {
+                        fr.esic.library.OutInPut.afficher("Code employé invalide. Accès refusé.");
+                        menuEmploye();
+                    }
+                    break;
+                case 2:
+                    int codeEmploye2 = fr.esic.library.OutInPut.saisirEntier("Entrez votre code employé : ");
+                    if (codeEmploye2 == 2) {
+                        menuMagasinier();
+                    } else {
+                        fr.esic.library.OutInPut.afficher("Code employé invalide. Accès refusé.");
+                        menuEmploye();
+                    }
+                    break;
+                case 3:
+                    int codeEmploye3 = fr.esic.library.OutInPut.saisirEntier("Entrez votre code employé : ");
+                    if (codeEmploye3 == 3) {
+                        menuResponsable();
+                    } else {
+                        fr.esic.library.OutInPut.afficher("Code employé invalide. Accès refusé.");
+                        menuEmploye();
+                    }
+                    break;
+                case 0:
+                    fr.esic.library.OutInPut.afficher("Au revoir !");
+                    System.exit(0);
+                    break;
+                default:
+                    fr.esic.library.OutInPut.afficher("Choix invalide. Veuillez réessayer.");
+                    menuEmploye(); // Affiche à nouveau le menu
+            }
         }
     }
 
     public static void menuCaissiere() {
-        String menu = "1. Scanner un produit\n2.Modifier un produit\n3.Appliquer une promotion\n\n4. Paiement\n\n0. Retour au menu principal";
-        int choix = fr.esic.library.OutInPut.saisirEntier(menu);
-        switch (choix) {
-            case 1:
-
-                break;
-            case 2:
-
-                break;
-            case 3:
-
-                break;
-            case 4:
-                menuPaiement();
-                break;
-            case 0:
-                menuEmploye();
-                break;
-            default:
-                fr.esic.library.OutInPut.afficher("Choix invalide. Veuillez réessayer.");
-                menuCaissiere(); // Affiche à nouveau le menu
-        }
-
-    }
-
-    public static void menuScanner() {
-        String menu = "1. Ajouter un produit\n2. Supprimer un produit\n\n0. Retour au menu caissière";
-        int choix = fr.esic.library.OutInPut.saisirEntier(menu);
-        switch (choix) {
-            case 1:
-
-                break;
-            case 2:
-
-                break;
-            case 0:
-                menuCaissiere();
-                break;
-            default:
-                fr.esic.library.OutInPut.afficher("Choix invalide. Veuillez réessayer.");
-                menuScanner(); // Affiche à nouveau le menu
+        while (true) {
+            String menu = "1. Scanner un produit\n2.Modifier un produit\n3.Appliquer une promotion\n\n4. Paiement\n\n0. Retour au menu principal";
+            int choix = fr.esic.library.OutInPut.saisirEntier(menu);
+            switch (choix) {
+                case 1:
+                    fr.esic.controller.CassiereController.scanner();
+                    break;
+                case 2:
+                    fr.esic.controller.CassiereController.modifier();
+                    break;
+                case 3:
+                    fr.esic.controller.CassiereController.appliquerPromotion();
+                    break;
+                case 4:
+                    menuPaiement();
+                    break;
+                case 0:
+                    return; // revenir au menuEmploye
+                default:
+                    fr.esic.library.OutInPut.afficher("Choix invalide. Veuillez réessayer.");
+                    break;
+            }
         }
     }
 
     public static void menuPaiement() {
-        String menu = "1. Passer une Carte de Fidelité\n2. Payer\n\n0. Retour au menu caissière";
-        int choix = fr.esic.library.OutInPut.saisirEntier(menu);
-        switch (choix) {
-            case 1:
 
-                break;
-            case 2:
-
-                break;
-            case 0:
-                menuCaissiere();
-                break;
-            default:
-                fr.esic.library.OutInPut.afficher("Choix invalide. Veuillez réessayer.");
-                menuPaiement(); // Affiche à nouveau le menu
+        while (true) {
+            String menu = "1. Passer une Carte de Fidelité\n2. Payer\n\n0. Retour au menu caissière";
+            int choix = fr.esic.library.OutInPut.saisirEntier(menu);
+            switch (choix) {
+                case 1:
+                    fr.esic.controller.CassiereController.passerCarteFidelite();
+                    break;
+                case 2:
+                    fr.esic.controller.CassiereController.payer();
+                    return; // après paiement, revenir au menu caissière
+                case 0:
+                    return; // revient au menuCaissiere
+                default:
+                    fr.esic.library.OutInPut.afficher("Choix invalide. Veuillez réessayer.");
+                    break;
+            }
         }
-
     }
 
     public static void menuMagasinier() {
-        String menu = "1. Voir l'inventaire\n2. Effectuer une livraison\n3. Mise en rayon\n\n0. Retour au menu principal";
-        int choix = fr.esic.library.OutInPut.saisirEntier(menu);
-        switch (choix) {
-            case 1:
-
-                menuMagasinier();
-                break;
-            case 2:
-
-                menuMagasinier();
-                break;
-            case 3:
-
-                menuMagasinier();
-                break;
-            case 0:
-                menuEmploye();
-                break;
-            default:
-                fr.esic.library.OutInPut.afficher("Choix invalide. Veuillez réessayer.");
-                menuMagasinier(); // Affiche à nouveau le menu
+        while (true) {
+            String menu = "1. Voir l'inventaire\n2. Effectuer une livraison\n3. Mise en rayon\n\n0. Retour au menu principal";
+            int choix = fr.esic.library.OutInPut.saisirEntier(menu);
+            switch (choix) {
+                case 1:
+                    // TODO implémenter
+                    break;
+                case 2:
+                    // TODO implémenter
+                    break;
+                case 3:
+                    // TODO implémenter
+                    break;
+                case 0:
+                    return; // retour menuEmploye
+                default:
+                    fr.esic.library.OutInPut.afficher("Choix invalide. Veuillez réessayer.");
+                    break;
+            }
         }
     }
 
     public static void menuResponsable() {
-        String menu = "1. Gestion des employés\n2. Validation des commandes\n3. Menu Caissière\n4. Menu Magasinier\n\n0. Retour au menu principal";
-        int choix = fr.esic.library.OutInPut.saisirEntier(menu);
-        switch (choix) {
-            case 1:
-
-                menuResponsable();
-                break;
-            case 2:
-
-                menuResponsable();
-                break;
-            case 3:
-                menuCaissiere();
-                break;
-            case 4:
-                menuMagasinier();
-                break;
-            case 0:
-                menuEmploye();
-                break;
-            default:
-                fr.esic.library.OutInPut.afficher("Choix invalide. Veuillez réessayer.");
-                menuResponsable(); // Affiche à nouveau le menu
+        while (true) {
+            String menu = "1. Gestion des employés\n2. Validation des commandes\n3. Menu Caissière\n4. Menu Magasinier\n\n0. Retour au menu principal";
+            int choix = fr.esic.library.OutInPut.saisirEntier(menu);
+            switch (choix) {
+                case 1:
+                    // TODO implémenter
+                    break;
+                case 2:
+                    // TODO implémenter
+                    break;
+                case 3:
+                    menuCaissiere();
+                    break;
+                case 4:
+                    menuMagasinier();
+                    break;
+                case 0:
+                    return; // retour menuEmploye
+                default:
+                    fr.esic.library.OutInPut.afficher("Choix invalide. Veuillez réessayer.");
+                    break;
+            }
         }
     }
 

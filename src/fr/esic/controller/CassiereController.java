@@ -3,6 +3,7 @@ package fr.esic.controller;
 import fr.esic.model.Employer;
 import fr.esic.model.Produit;
 import fr.esic.library.*;
+import fr.esic.controller.Data;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -46,7 +47,7 @@ public class CassiereController {
         int diff = nouvelleQte - ancienneQte;
         if (diff > 0) {
             // retirer du stock magasin
-            for (Produit prod : ProduitController.produits) {
+            for (Produit prod : Data.produits) {
                 if (prod.getNom().equalsIgnoreCase(p.getNom())) {
                     if (prod.getStock() < diff) {
                         OutInPut.afficher("Stock magasin insuffisant. Opération annulée.");
@@ -58,7 +59,7 @@ public class CassiereController {
             }
         } else if (diff < 0) {
             // restituer au magasin
-            for (Produit prod : ProduitController.produits) {
+            for (Produit prod : Data.produits) {
                 if (prod.getNom().equalsIgnoreCase(p.getNom())) {
                     prod.setStock(prod.getStock() - diff);
                     break;
@@ -132,7 +133,7 @@ public class CassiereController {
         }
         Produit p = panier.remove(choix - 1);
         // restituer le stock dans l'inventaire
-        for (Produit prod : ProduitController.produits) {
+        for (Produit prod : Data.produits) {
             if (prod.getNom().equalsIgnoreCase(p.getNom())) {
                 prod.setStock(prod.getStock() + p.getStock());
                 break;

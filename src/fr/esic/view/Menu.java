@@ -104,10 +104,10 @@ public class Menu {
             int choix = fr.esic.library.OutInPut.saisirEntier(menu);
             switch (choix) {
                 case 1:
-                    // TODO implémenter
+                    fr.esic.controller.MagasinierController.allProduit();
                     break;
                 case 2:
-                    // TODO implémenter
+                    fr.esic.controller.MagasinierController.livraison();
                     break;
                 case 3:
                     // TODO implémenter

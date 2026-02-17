@@ -1,14 +1,12 @@
 package fr.esic.controller;
 
-import fr.esic.library.OutInPut;   
-
+import fr.esic.library.OutInPut;
+import fr.esic.controller.Data;
 import fr.esic.model.Produit;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProduitController {
-
-    public static List<Produit> produits = new ArrayList<>();
 
     public static void createProduit() {
         String nom = OutInPut.saisirTexte("Entrez le nom du produit : ");
@@ -18,15 +16,15 @@ public class ProduitController {
 
         // Logique pour créer et sauvegarder le produit
         Produit produit = new Produit(nom, description, prix, quantite);
-        produits.add(produit);
+        Data.produits.add(produit);
     }
 
     public static void allProduit() {
         String data = "";
-        if (produits.isEmpty()) {
+        if (Data.produits.isEmpty()) {
             OutInPut.afficher("Aucun produit disponible.");
         } else {
-            for (Produit produit : produits) {
+            for (Produit produit : Data.produits) {
                 data += produit.infoProduit() + "\n";
             }
             OutInPut.afficher(data);
@@ -36,7 +34,7 @@ public class ProduitController {
 
     public static List<Produit> findByName(String nom) {
         List<Produit> result = new ArrayList<>(); // nouvelle liste
-        for (Produit produit : produits) {
+        for (Produit produit : Data.produits) {
             if (produit.getNom().equalsIgnoreCase(nom)) {
                 result.add(produit);
             }
@@ -61,7 +59,7 @@ public class ProduitController {
     // produit
     public static List<Produit> findByNameContains(String nom) {
         List<Produit> result = new ArrayList<>();
-        for (Produit produit : produits) {
+        for (Produit produit : Data.produits) {
             if (produit.getNom().toLowerCase().contains(nom.toLowerCase())) {
                 result.add(produit);
             }
@@ -165,7 +163,7 @@ public class ProduitController {
             String valider = OutInPut
                     .saisirTexte("Saisissez OUI pour supprimer ce produit ou NON pour le conserver : ");
             if (valider.equalsIgnoreCase("oui")) {
-                produits.remove(produit);
+                Data.produits.remove(produit);
                 OutInPut.afficher("Produit supprimé avec succès");
             } else if (valider.equalsIgnoreCase("non")) {
                 OutInPut.afficher("Produit conservé dans le catalogue");

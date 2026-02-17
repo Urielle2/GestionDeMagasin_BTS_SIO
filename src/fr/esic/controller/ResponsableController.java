@@ -2,12 +2,11 @@ package fr.esic.controller;
 
 import fr.esic.library.OutInPut;
 import fr.esic.model.Employer;
+import fr.esic.controller.Data;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ResponsableController {
-
-    public static List<Employer> employes = new ArrayList<>();
 
     public static void ajouterEmploye() {
         String nom = OutInPut.saisirTexte("Nom : ");
@@ -16,43 +15,43 @@ public class ResponsableController {
         int password = OutInPut.saisirEntier("Password : ");
 
         Employer e = new Employer(nom, prenom, poste, password);
-        employes.add(e);
+        Data.employes.add(e);
 
         OutInPut.afficher("Employé ajouté avec succès !");
     }
 
     public static void afficherEmployes() {
-        if (employes.isEmpty()) {
+        if (Data.employes.isEmpty()) {
             OutInPut.afficher("Aucun employé enregistré.");
             return;
         }
 
-        String data = "";
-        for (Employer e : employes) {
-            data += e.infoPersonManager() + "\n";
+        String affichage = "";
+        for (Employer e : Data.employes) {
+            affichage += e.infoPersonManager() + "\n";
         }
 
-        OutInPut.afficher(data);
+        OutInPut.afficher(affichage);
     }
 
     public static void rechercherEmploye() {
         String nom = OutInPut.saisirTexte("Nom de l'employé à rechercher : ");
         int c = 1;
-        String data = "";
+        String affichage = "";
 
-        for (Employer e : employes) {
+        for (Employer e : Data.employes) {
             if (e.getNom().toLowerCase().contains(nom.toLowerCase())) {
-                data += c + ". " + e.infoPersonManager() + "\n";
+                affichage += c + ". " + e.infoPersonManager() + "\n";
             }
         }
 
-        if (data.isEmpty()) {
+        if (affichage.isEmpty()) {
             OutInPut.afficher("Aucun employé trouvé avec ce nom.");
         } else {
             if (c == 1) {
-                OutInPut.afficher("Employé trouvé : \n" + data);
+                OutInPut.afficher("Employé trouvé : \n" + affichage);
             } else {
-                OutInPut.afficher("Employés trouvés : \n" + data);
+                OutInPut.afficher("Employés trouvés : \n" + affichage);
             }
         }
     }
@@ -61,7 +60,7 @@ public class ResponsableController {
         String nom = OutInPut.saisirTexte("Nom de l'employé à rechercher : ");
 		List<Employer> resultats = new ArrayList<>();
 
-        for (Employer e : employes) {
+        for (Employer e : Data.employes) {
             if (e.getNom().toLowerCase().contains(nom.toLowerCase())) {
 				resultats.add(e);
             }

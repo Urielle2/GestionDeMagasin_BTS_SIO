@@ -6,9 +6,7 @@ public class Program {
         // initialisation des données de test
         Data.loadData();
 
-        // distribuer les produits chargés vers le contrôleur principal
-        fr.esic.controller.ProduitController.produits.clear();
-        fr.esic.controller.ProduitController.produits.addAll(Data.produits);
+        // les produits sont maintenant directement accessibles via Data.rayon
 
         // l'authentification dans le menu s'appuiera sur la liste d'employés de Data
         Menu.menuEmploye();

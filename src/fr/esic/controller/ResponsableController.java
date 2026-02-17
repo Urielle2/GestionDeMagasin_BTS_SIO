@@ -21,6 +21,7 @@ public class ResponsableController {
     }
 
     public static void afficherEmployes() {
+        System.out.println("DEBUG afficherEmployes: " + Data.employes.size() + " employés");
         if (Data.employes.isEmpty()) {
             OutInPut.afficher("Aucun employé enregistré.");
             return;
@@ -108,7 +109,7 @@ public class ResponsableController {
         if (employeASupprimer != null) {
 			boolean confirmation = OutInPut.saisirConfirmation("Etes-vous sur de vouloir retirer cet employer ?");
             if (confirmation) {
-                employes.remove(employeASupprimer);
+                Data.employes.remove(employeASupprimer);
                 OutInPut.afficher("Employé supprimé.");
             } else {
                 OutInPut.afficher("Suppression annulée.");

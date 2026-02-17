@@ -1,12 +1,9 @@
 package fr.esic.view;
 
 import fr.esic.controller.*;
+import fr.esic.library.OutInPut;
 
 public class Menu {
-
-    public static void main(String[] args) {
-        menuEmploye();
-    }
 
     public static void menuEmploye() {
         while (true) {
@@ -53,17 +50,17 @@ public class Menu {
 
     public static void menuCaissiere() {
         while (true) {
-            String menu = "1. Scanner un produit\n2.Modifier un produit\n3.Appliquer une promotion\n\n4. Paiement\n\n0. Retour au menu principal";
+            String menu = "1. Scanner un produit\n2.Modifier un produit\n3.Appliquer une promotion\n4. Paiement\n\n0. Retour au menu principal";
             int choix = fr.esic.library.OutInPut.saisirEntier(menu);
             switch (choix) {
                 case 1:
-                    fr.esic.controller.CassiereController.scanner();
+                    fr.esic.controller.CaissiereController.scanner();
                     break;
                 case 2:
-                    fr.esic.controller.CassiereController.modifier();
+                    fr.esic.controller.CaissiereController.modifier();
                     break;
                 case 3:
-                    fr.esic.controller.CassiereController.appliquerPromotion();
+                    fr.esic.controller.CaissiereController.appliquerPromotion();
                     break;
                 case 4:
                     menuPaiement();
@@ -78,29 +75,39 @@ public class Menu {
     }
 
     public static void menuPaiement() {
+        String msg = "=== Menu Paiement ===\n\n" + "1. Consulter le solde fidélité\n"
+                + "2. Règlement de la commande\n\n" + "0. Retour au menu principal\n" + "100. Quitter le programme\n\n"
+                + "Veuillez choisir une option : ";
 
-        while (true) {
-            String menu = "1. Passer une Carte de Fidelité\n2. Payer\n\n0. Retour au menu caissière";
-            int choix = fr.esic.library.OutInPut.saisirEntier(menu);
+        boolean retour = false;
+
+        while (!retour) {
+            int choix = OutInPut.saisirEntier(msg);
+
             switch (choix) {
                 case 1:
-                    fr.esic.controller.CassiereController.passerCarteFidelite();
+                    fr.esic.controller.CaissiereController.consulterFidelite();
                     break;
                 case 2:
-                    fr.esic.controller.CassiereController.payer();
-                    return; // après paiement, revenir au menu caissière
-                case 0:
-                    return; // revient au menuCaissiere
-                default:
-                    fr.esic.library.OutInPut.afficher("Choix invalide. Veuillez réessayer.");
+                    fr.esic.controller.CaissiereController.depenserSoldeFideliteEtPaiement();
                     break;
+                case 0:
+                    retour = true;
+                    break;
+                case 100:
+                    System.exit(0);
+                    break;
+                default:
+                    OutInPut.afficher("Option invalide. Veuillez réessayer.");
             }
+
         }
+
     }
 
     public static void menuMagasinier() {
         while (true) {
-            String menu = "1. Voir l'inventaire\n2. Effectuer une livraison\n3. Mise en rayon\n\n0. Retour au menu principal";
+            String menu = "1. Voir l'inventaire\n2. Effectuer une livraison\n3. Mise en rayon\n4. Retirer un produit en rayon\n\n0. Retour au menu principal";
             int choix = fr.esic.library.OutInPut.saisirEntier(menu);
             switch (choix) {
                 case 1:
@@ -110,7 +117,10 @@ public class Menu {
                     fr.esic.controller.MagasinierController.livraison();
                     break;
                 case 3:
-                    // TODO implémenter
+                    fr.esic.controller.MagasinierController.miseEnRayon();
+                    break;
+                case 4:
+                    fr.esic.controller.MagasinierController.removeProductFromRayon();
                     break;
                 case 0:
                     return; // retour menuEmploye
@@ -123,19 +133,16 @@ public class Menu {
 
     public static void menuResponsable() {
         while (true) {
-            String menu = "1. Gestion des employés\n2. Validation des commandes\n3. Menu Caissière\n4. Menu Magasinier\n\n0. Retour au menu principal";
+            String menu = "1. Gestion des employés\n2. Menu Caissière\n3. Menu Magasinier\n\n0. Retour au menu principal";
             int choix = fr.esic.library.OutInPut.saisirEntier(menu);
             switch (choix) {
                 case 1:
                     menuGestionEmploye();
                     break;
                 case 2:
-                    // TODO implémenter
-                    break;
-                case 3:
                     menuCaissiere();
                     break;
-                case 4:
+                case 3:
                     menuMagasinier();
                     break;
                 case 0:
@@ -173,7 +180,7 @@ public class Menu {
                     fr.esic.library.OutInPut.afficher("Choix invalide. Veuillez réessayer.");
                     break;
             }
-        
+
         }
     }
 }

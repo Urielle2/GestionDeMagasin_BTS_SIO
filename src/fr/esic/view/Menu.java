@@ -1,6 +1,6 @@
 package fr.esic.view;
 
-import fr.esic.controller.EmployeController;
+import fr.esic.controller.ResponsableController;
 
 public class Menu {
 
@@ -166,18 +166,18 @@ public class Menu {
 		switch (choix) {
 		case 1:
 
-			EmployeController.ajouterEmploye();
+			ResponsableController.ajouterEmploye();
 			break;
 		case 2:
 
-			EmployeController.afficherEmployes();
+			ResponsableController.afficherEmployes();
 			break;
 		case 3:
-			EmployeController.rechercherEmploye();
+			ResponsableController.rechercherEmploye();
 			break;
 
 		case 4:
-			EmployeController.supprimerEmploye();
+			ResponsableController.supprimerEmploye();
 			break;
 		case 0:
 			menuEmploye();

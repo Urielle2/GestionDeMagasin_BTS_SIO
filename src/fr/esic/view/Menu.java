@@ -127,7 +127,7 @@ public class Menu {
             int choix = fr.esic.library.OutInPut.saisirEntier(menu);
             switch (choix) {
                 case 1:
-                    // TODO implémenter
+                    menuGestionEmploye();
                     break;
                 case 2:
                     // TODO implémenter
@@ -147,4 +147,33 @@ public class Menu {
         }
     }
 
+    public static void menuGestionEmploye() {
+        while (true) {
+            String menu = "1. Ajouter un employé\n2. Modifier un employé\n3. Afficher les employés\n4. Rechercher un employé\n5. Supprimer un employé\n\n0. Retour au menu responsable";
+            int choix = fr.esic.library.OutInPut.saisirEntier(menu);
+            switch (choix) {
+                case 1:
+                    fr.esic.controller.ResponsableController.ajouterEmploye();
+                    break;
+                case 2:
+                    fr.esic.controller.ResponsableController.modifierEmploye();
+                    break;
+                case 3:
+                    fr.esic.controller.ResponsableController.afficherEmployes();
+                    break;
+                case 4:
+                    fr.esic.controller.ResponsableController.rechercherEmploye();
+                    break;
+                case 5:
+                    fr.esic.controller.ResponsableController.supprimerEmploye();
+                    break;
+                case 0:
+                    return; // retour menuResponsable
+                default:
+                    fr.esic.library.OutInPut.afficher("Choix invalide. Veuillez réessayer.");
+                    break;
+            }
+        
+        }
+    }
 }

@@ -11,15 +11,17 @@ public class Employer {
 
 	private String nom;
 	private String prenom;
+	private String poste;
 	private int password;
 
 	public Employer() {
 
 	}
 
-	public Employer(String nom, String prenom, int password) {
+	public Employer(String nom, String prenom, String poste, int password) {
 		this.nom = nom;
 		this.prenom = prenom;
+		this.poste = poste;
 		this.password = password;
 	}
 
@@ -39,6 +41,13 @@ public class Employer {
 		this.prenom = prenom;
 	}
 
+	public String getPoste() {
+		return poste;
+	}
+
+	public void setPoste(String poste) {
+		this.poste = poste;
+	}
 
 	public int getPassword() {
 		return password;

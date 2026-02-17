@@ -21,21 +21,21 @@ public class Data {
         employes.clear();
 
         // dix produits d'exemple
-        produits.add(new Produit("Pommes", "Fruit rouge", 0.99, 100));
-        produits.add(new Produit("Bananes", "Fruit jaune", 0.59, 120));
-        produits.add(new Produit("Lait","Bouteille 1L", 1.29, 80));
-        produits.add(new Produit("Pain","Baguette", 0.85, 60));
-        produits.add(new Produit("Fromage","Emmental 200g", 2.49, 40));
-        produits.add(new Produit("Beurre","250g", 1.79, 50));
-        produits.add(new Produit("Œufs","Boîte de 12", 2.99, 70));
-        produits.add(new Produit("Poulet","1 kg", 5.99, 30));
-        produits.add(new Produit("Riz","Sac 1kg", 1.15, 90));
-        produits.add(new Produit("Pâtes","500g", 0.99, 110));
+        // produits.add(new Produit("Pommes", "Fruit rouge", 0.99, 100));
+        // produits.add(new Produit("Bananes", "Fruit jaune", 0.59, 120));
+        // produits.add(new Produit("Lait","Bouteille 1L", 1.29, 80));
+        // produits.add(new Produit("Pain","Baguette", 0.85, 60));
+        // produits.add(new Produit("Fromage","Emmental 200g", 2.49, 40));
+        // produits.add(new Produit("Beurre","250g", 1.79, 50));
+        // produits.add(new Produit("Œufs","Boîte de 12", 2.99, 70));
+        // produits.add(new Produit("Poulet","1 kg", 5.99, 30));
+        // produits.add(new Produit("Riz","Sac 1kg", 1.15, 90));
+        // produits.add(new Produit("Pâtes","500g", 0.99, 110));
 
         // trois employés de rôles différents
-        employes.add(new Employer("Dupont", "Alice", 1));   // caissière
-        employes.add(new Employer("Martin", "Bob", 2));      // responsable
-        employes.add(new Employer("Bernard", "Carla", 3));   // magasinier
+        employes.add(new Employer("Dupont", "Alice", "Caissière", 1));   // caissière
+        employes.add(new Employer("Martin", "Bob", "Responsable", 2));      // responsable
+        employes.add(new Employer("Bernard", "Carla", "Magasinier", 3));   // magasinier
     }
 
     private Data() {

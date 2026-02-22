@@ -3,15 +3,11 @@ package fr.esic.controller;
 import java.util.ArrayList;
 import java.util.List;
  
-import fr.esic.library.MyInOutPut;
 import fr.esic.library.OutInPut;
-import fr.esic.model.Article;
 import fr.esic.model.Client;
 import fr.esic.model.Produit;
+import fr.esic.controller.Data;
  
-import javax.print.attribute.standard.OutputBin;
-
-import javax.print.attribute.standard.OutputBin;
 
  
 public class ClientController {
@@ -19,10 +15,10 @@ public class ClientController {
 	// 1- Afficher les clients
 	public static void afficherClient() {
 		String data = "";
-		if (clients.isEmpty()) {
+		if (Data.clients.isEmpty()) {
 			OutInPut.afficher("La commande ne contient pas d'article");
 		} else {
-			for (Client client : clients) {
+			for (Client client : Data.clients) {
 				data += client.infoClient() + "\n";
 			}
 			OutInPut.afficher("Commande en cours : \n\n" + data);
@@ -31,7 +27,7 @@ public class ClientController {
  
 	public static List<Client> trouverParNom(String nom) {
 		List<Client> result = new ArrayList<>();
-		for (Client client : clients) {
+		for (Client client : Data.clients) {
  
 			if (client.getNom().equalsIgnoreCase(nom)) {
 				result.add(client);
@@ -59,7 +55,7 @@ public class ClientController {
 	public static List<Client> trouverParNomContenant(String nom) {
  
 		List<Client> result = new ArrayList<>();
-		for (Client client : clients) {
+		for (Client client : Data.clients) {
 			if (client.getNom().toLowerCase().contains(nom.toLowerCase())) {
 				result.add(client);
 			}
@@ -108,10 +104,10 @@ public class ClientController {
 		double soldeFidelite = 0;
 		int codeFidelite = 0;
  
-		if (clients.isEmpty()) {
+		if (Data.clients.isEmpty()) {
 			OutInPut.afficher("Aucun client");
 		} else {
-			for (Client client : clients) {
+			for (Client client : Data.clients) {
 				codeFidelite = client.getCodeFidelite();
  
 				if (code == codeFidelite) {
@@ -126,11 +122,11 @@ public class ClientController {
 	public static double recupererSoldeFidelite() {
 		int code = OutInPut.saisirEntier("Entrez votre code fidélité : ");
  
-		if (clients.isEmpty()) {
+		if (Data.clients.isEmpty()) {
 			OutInPut.afficher("Aucun client trouvé");
 			return 0;
 		} else {
-			for (Client client : clients) {
+			for (Client client : Data.clients) {
 				if (code == client.getCodeFidelite()) {
 					return client.getSoldeFidelite();
 				}
@@ -144,11 +140,11 @@ public class ClientController {
 	public static double recupererSolde() {
 		String code = OutInPut.saisirTexte("Entrez votre numéro client : ");
  
-		if (clients.isEmpty()) {
+		if (Data.clients.isEmpty()) {
 			OutInPut.afficher("Aucun client trouvé");
 			return 0;
 		} else {
-			for (Client client : clients) {
+			for (Client client : Data.clients) {
 				if (code.equalsIgnoreCase(client.getNumeroClient()) ) {
 					return client.getSolde();
 				}
